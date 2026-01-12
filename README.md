@@ -1,6 +1,16 @@
 # 🛍️ ATELIER - Full-Stack E-Commerce Platform
 
-A modern, professional e-commerce platform built with React, Node.js, Express, and MongoDB. Complete shopping experience with user authentication, product management, reviews, and admin controls.
+A modern, professional e-commerce platform built with React, Node.js, Express, and MongoDB. Features complete shopping experience with user authentication, product management, customer reviews, and admin controls.
+
+![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-14+-339933?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+## 🌟 Live Demo
+
+- **Frontend:** [https://atelier-ecommerce.vercel.app](https://atelier-ecommerce.vercel.app)
+- **Backend API:** [https://ecommerce-backend-rsj6.onrender.com](https://ecommerce-backend-rsj6.onrender.com)
 
 ## ✨ Key Features
 
@@ -35,10 +45,30 @@ A modern, professional e-commerce platform built with React, Node.js, Express, a
 
 ## 🛠️ Tech Stack
 
-**Frontend:** React.js, Context API, CSS3  
-**Backend:** Node.js, Express.js, MongoDB  
-**Database:** MongoDB Atlas  
-**Authentication:** JWT + Bcrypt  
+### Frontend
+- **React.js 18** - Modern UI library
+- **Context API** - Global state management
+- **Hooks** - useState, useEffect, useContext, custom hooks
+- **Lucide React** - Beautiful icon library
+- **CSS3** - Custom styling with modern features
+- **Responsive Design** - Mobile-first approach
+- **localStorage** - Client-side data persistence
+
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - JSON Web Tokens for authentication
+- **Bcrypt** - Password hashing
+- **CORS** - Cross-origin resource sharing
+- **Dotenv** - Environment variable management
+
+### Deployment
+- **Frontend:** Vercel 
+- **Backend:** Render 
+- **Database:** MongoDB Atlas
+
 
 ## 🔑 Admin Login
 - Email: admin@store.com
@@ -60,6 +90,22 @@ A modern, professional e-commerce platform built with React, Node.js, Express, a
 - JWT tokens
 - Protected routes
 - Input validation
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](<img width="938" height="897" alt="Screenshot 2026-01-12 231601" src="https://github.com/user-attachments/assets/a0e7bac4-8a03-40d0-a871-4e1c5280df49" />)
+
+### Product Detail
+![Product Detail](https://via.placeholder.com/800x400/8B7355/FFFFFF?text=Product+Detail)
+
+### Shopping Cart
+![Shopping Cart](https://via.placeholder.com/800x400/8B7355/FFFFFF?text=Shopping+Cart)
+
+### Admin Panel
+![Admin Panel](https://via.placeholder.com/800x400/8B7355/FFFFFF?text=Admin+Panel)
+
+---
 
 ## 👤 Developer
 **Anushka**  
