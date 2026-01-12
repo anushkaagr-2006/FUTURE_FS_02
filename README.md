@@ -121,7 +121,7 @@ A modern, professional e-commerce platform built with React, Node.js, Express, a
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
+---
 
 ## 👤 Author
 
