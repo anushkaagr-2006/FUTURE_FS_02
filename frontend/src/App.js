@@ -28,9 +28,46 @@ const StoreProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userCarts, setUserCarts] = useState({});
-  const [userOrders, setUserOrders] = useState({});
-  const [productReviews, setProductReviews] = useState({}); // { productId: [reviews] }
+  const [userCarts, setUserCarts] = useState(() => {
+    const saved = localStorage.getItem('userCarts');
+    return saved ? JSON.parse(saved) : {};
+  });
+  const [userOrders, setUserOrders] = useState(() => {
+    const saved = localStorage.getItem('userOrders');
+    return saved ? JSON.parse(saved) : {};
+  });
+  const [productReviews, setProductReviews] = useState(() => {
+    const saved = localStorage.getItem('productReviews');
+    return saved ? JSON.parse(saved) : {};
+  }); // { productId: [reviews] }
+
+  // Save carts to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
+  }, [userCarts]);
+
+  // Save orders to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('userOrders', JSON.stringify(userOrders));
+  }, [userOrders]);
+
+  // Save reviews to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('productReviews', JSON.stringify(productReviews));
+  }, [productReviews]);
+
+  // Load user from localStorage on app start
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (error) {
+        console.error('Error loading user from localStorage:', error);
+        localStorage.removeItem('user');
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -275,6 +312,8 @@ const Navigation = ({ currentView, setCurrentView, setShowCart }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleLogout = () => {
+    // Clear user from localStorage
+    localStorage.removeItem('user');
     setUser(null);
     setCurrentView('products');
     setShowMenu(false);
@@ -826,6 +865,9 @@ const AuthView = () => {
       role: formData.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() ? 'admin' : 'user'
     };
 
+    // Save user to localStorage
+    localStorage.setItem('user', JSON.stringify(userData));
+    
     setUser(userData);
     setSuccessMessage(userData.role === 'admin' ? '👑 Admin access granted!' : '✅ Successfully signed in!');
     setShowSuccess(true);
