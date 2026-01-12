@@ -9,8 +9,7 @@ A modern, professional e-commerce platform built with React, Node.js, Express, a
 
 ## 🌟 Live Demo
 
-- **Frontend:** [https://atelier-ecommerce.vercel.app](https://atelier-ecommerce.vercel.app)
-- **Backend API:** [https://ecommerce-backend-rsj6.onrender.com](https://ecommerce-backend-rsj6.onrender.com)
+[https://atelier-ecommerce.vercel.app](https://atelier-ecommerce.vercel.app)
 
 **Test Admin Access:**
 - Email: `admin@store.com`
