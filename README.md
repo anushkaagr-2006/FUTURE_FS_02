@@ -11,6 +11,8 @@ A modern, professional e-commerce platform built with React, Node.js, Express, a
 
 [https://atelier-ecommerce.vercel.app](https://atelier-ecommerce.vercel.app)
 
+---
+
 **Test Admin Access:**
 - Email: `admin@store.com`
 - Password: `admin@123`
