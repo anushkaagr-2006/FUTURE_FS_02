@@ -56,6 +56,13 @@ const StoreProvider = ({ children }) => {
     localStorage.setItem('productReviews', JSON.stringify(productReviews));
   }, [productReviews]);
 
+  // Save products to localStorage whenever they change
+  useEffect(() => {
+    if (products.length > 0) {
+      localStorage.setItem('products', JSON.stringify(products));
+    }
+  }, [products]);
+
   // Load user from localStorage on app start
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -71,17 +78,50 @@ const StoreProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      // First, load any locally saved products immediately
+      const savedProducts = localStorage.getItem('products');
+      const localProducts = savedProducts ? JSON.parse(savedProducts) : [];
+      
+      if (localProducts.length > 0) {
+        setProducts(localProducts);
+        setLoading(false);
+      }
+
       try {
         const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
         const response = await fetch(`${API_URL}/products`);
+        
         if (!response.ok) throw new Error('Backend not available');
-        const data = await response.json();
-        setProducts(data);
+        
+        const backendProducts = await response.json();
+        
+        // Get locally added products (those with 'id' instead of '_id')
+        const locallyAddedProducts = localProducts.filter(p => p.id && !p._id);
+        
+        // Merge: backend products + locally added products (avoid duplicates)
+        const mergedProducts = [
+          ...backendProducts,
+          ...locallyAddedProducts.filter(
+            local => !backendProducts.some(backend => backend._id === local.id || backend.id === local.id)
+          )
+        ];
+        
+        setProducts(mergedProducts);
+        localStorage.setItem('products', JSON.stringify(mergedProducts));
       } catch (error) {
+        console.log('Backend not available, using localStorage or FakeStore API');
+        
+        if (localProducts.length > 0) {
+          // Already set above, just keep using local products
+          return;
+        }
+        
+        // Fallback to FakeStore API
         try {
           const response = await fetch('https://fakestoreapi.com/products');
           const data = await response.json();
           setProducts(data);
+          localStorage.setItem('products', JSON.stringify(data));
         } catch (fallbackError) {
           console.error('All APIs failed:', fallbackError);
         }
